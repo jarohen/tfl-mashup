@@ -26,11 +26,15 @@
      [:script (repl-connect-js)]]]))
 
 (defn send-locations! [users]
-  (let [message (-> users
-                    vals
-                    pr-str)]
+  (let [message (pr-str (vals users))]
     (doseq [conn (keys users)]
       (a/put! conn message))))
+
+(defn handle-event [users {:keys [action conn details]}]
+  (case action
+    :joined (assoc users conn {})
+    :update (assoc users conn details)
+    :left (dissoc users conn)))
 
 (let [users-ch (a/chan)]
   (go-loop [users {}]
@@ -38,27 +42,20 @@
     (let [tick (a/timeout 500)
           [v c] (a/alts! [tick users-ch])]
       (condp = c
-        tick (do
-               (send-locations! users)
-               (recur users))
-        users-ch (let [{:keys [event conn details]} v]
-                   (recur
-                    (case event
-                      :joined (assoc users conn {})
-                      :update (assoc users conn details)
-                      :left (dissoc users conn)))))))
+        tick (recur (doto users send-locations!))
+        users-ch (recur (handle-event users v)))))
   
   (defn user-connected! [conn]
-    (a/put! users-ch {:event :joined :conn conn})
+    (a/put! users-ch {:action :joined :conn conn})
     (go-loop []
       (if-let [{:keys [message]} (<! conn)]
         (let [details (edn/read-string message)]
-          (>! users-ch {:event :update
+          (>! users-ch {:action :update
                         :conn conn
                         :details details})
           (recur))
         
-        (>! {:event :left
+        (>! {:action :left
              :conn conn})))))
 
 (defn user-joined! [req]
