@@ -20,7 +20,8 @@
 
                  [clj-http "0.7.8"]
 
-                 [jarohen/chord "0.2.1"]]
+                 [jarohen/chord "0.2.1"]
+                 [net.drib/blade "0.1.0"]]
 
   :plugins [[jarohen/lein-frodo "0.2.5"]
             [lein-cljsbuild "1.0.0"]
