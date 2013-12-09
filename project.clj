@@ -10,12 +10,17 @@
                  [ring/ring-core "1.2.0"]
                  [compojure "1.1.5"]
                  [hiccup "1.0.4"]
+                 [ring-middleware-format "0.3.1"]
 
                  [prismatic/dommy "0.1.1"]
 
                  [org.clojure/core.async "0.1.242.0-44b1e3-alpha"]
                  [org.clojure/clojurescript "0.0-2080"]
-                 [org.clojure/tools.reader "0.8.0"]]
+                 [org.clojure/tools.reader "0.8.0"]
+
+                 [clj-http "0.7.8"]
+
+                 [jarohen/chord "0.2.1"]]
 
   :plugins [[jarohen/lein-frodo "0.2.5"]
             [lein-cljsbuild "1.0.0"]
