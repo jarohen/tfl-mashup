@@ -6,5 +6,9 @@
   (add-watch !hash :home-page
              (fn [_ _ _ hash]
                (when (= "#/" hash)
-                 (d/replace-contents! (sel1 :#content) (node [:h2 {:style {:margin-top :1em}}
-                                                              "Hello world from ClojureScript!"]))))))
+                 (d/replace-contents! (sel1 :#content)
+                                      (node [:div
+                                              [:h2 {:style {:margin-top :1em}}
+                                                   "Hello world frfom ClojureScript!"]
+                                              [:div#map {:style {:width "800px" :height "600px"}}]
+                                             ]))))))

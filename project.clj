@@ -44,7 +44,6 @@
   :cljsbuild {:builds [{:source-paths ["src/cljs" "target/generated/cljs"]
                         :compiler {:output-to "target/resources/js/tfl-mashup.js"
                                    :output-dir "target/resources/js/"
-                                   :foreign-libs [{:file "http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js" :provides ["L"]}]
                                    :optimizations :whitespace
                                    :pretty-print true
 
