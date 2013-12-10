@@ -16,10 +16,10 @@
    [:head
     [:title "Location Tracker - CLJS Single Page Web Application"]
     (include-js "//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
-    (include-js "//cdn.leafletjs.com/leaflet-0.7.1/leaflet.js")
+    (include-js "//cdn.leafletjs.com/leaflet-0.5/leaflet.js")
     (include-js "//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js")
     (include-css "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css")
-    (include-css "//cdn.leafletjs.com/leaflet-0.7.1/leaflet.css")
+    (include-css "//cdn.leafletjs.com/leaflet-0.5/leaflet.css")
     (include-js "/js/tfl-mashup.js")]
    [:body
     [:div.container

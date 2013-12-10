@@ -10,6 +10,9 @@
 (def tile-url
   "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png")
 
+(def ws
+  (js/WebSocket. "ws://localhost:3000/locations"))
+
 (defn watch-hash! [!hash]
   (add-watch !hash :home-page
              (fn [_ _ _ hash]
